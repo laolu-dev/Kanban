@@ -44,5 +44,9 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+# Build Runner generated files
+*.*.dart
+
+# Env file
 .env.dev
 .env.prod
