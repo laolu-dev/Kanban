@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:kanban/core/constants/constants.dart';
 
 const int _designWidth = 1440;
+
 const int _designHeight = 960;
 
 extension BuildContextExtension on BuildContext {
   double get screenWidth => MediaQuery.sizeOf(this).width;
+
   double get screenHeight => MediaQuery.sizeOf(this).height;
+
+  TextTheme get textTheme => Theme.of(this).textTheme;
+
+  FilledButtonThemeData get filledButtonTheme =>
+      Theme.of(this).filledButtonTheme;
 }
 
-extension NumExtension on num {
-  num adH(BuildContext context) {
-    return this * (context.screenHeight / _designHeight);
-  }
+extension DoubleExtension on double {
+  double get h => this * (RunningDeviceInfo.instance.height / _designHeight);
 
-  num adW(BuildContext context) {
-    return this * (context.screenWidth / _designWidth);
-  }
+  double get w => this * (RunningDeviceInfo.instance.width / _designWidth);
+
+  SizedBox get verticalSpacing => SizedBox(height: this);
+
+  SizedBox get horizontalSpacing => SizedBox(width: this);
 }

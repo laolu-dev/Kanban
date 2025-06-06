@@ -1,4 +1,5 @@
 name: kanban
+
 description: "Inventory Management Dashboard"
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -11,18 +12,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   flutter_hooks: ^0.21.2
   cupertino_icons: ^1.0.8
   hooks_riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1
   auto_route: ^10.0.1
   flutter_svg: ^2.0.10+1
+  icons_plus: ^5.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: ^5.0.0
   build_runner: ^2.4.15
   auto_route_generator: ^10.0.1
@@ -30,7 +30,7 @@ dev_dependencies:
   flutter_gen_runner: ^5.10.0
 
 flutter_gen:
-  output: lib/gen/
+  output: lib/config/gen/
   assets:
     outputs:
       class_name: AppAssets
@@ -46,15 +46,15 @@ flutter_gen:
     outputs:
       class_name: AppColors
 
+
 flutter:
   uses-material-design: false
 
   assets:
     - assets/icons/
 
-   # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-VariableFont.ttf
+ 
