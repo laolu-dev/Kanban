@@ -5,10 +5,7 @@ import 'package:kanban/config/router/router.gr.dart';
 class KanbanRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(
-      initial: true,
-      path: "/create-account",
-      page: CreateAccountRoute.page,
-    ),
+    AutoRoute(path: "/", page: CreateAccountRoute.page),
+    AutoRoute(path: "/login", page: LoginRoute.page),
   ];
 }
