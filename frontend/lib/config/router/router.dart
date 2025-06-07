@@ -14,29 +14,33 @@ class KanbanRouter extends RootStackRouter {
       path: "/create-account-page",
       page: CreateAccountRoute.page,
     ),
+    // AutoRoute(
+    //   path: "/dashboard",
+    //   page: DashboardRoute.page,
+    // ),
+    // AutoRoute(
+    //   path: "/inventory",
+    //   page: InventoryRoute.page,
+    // ),
+    // AutoRoute(
+    //   path: "/reports",
+    //   page: ReportsRoute.page,
+    // ),
+    // AutoRoute(
+    //   path: "/suppliers",
+    //   page: SuppliersRoute.page,
+    // ),
+    // AutoRoute(
+    //   path: "/orders",
+    //   page: OrderRoute.page,
+    // ),
+    // AutoRoute(
+    //   path: "/manage-store",
+    //   page: ManageStoreRoute.page,
+    // ),
     AutoRoute(
-      path: "/dashboard",
-      page: DashboardRoute.page,
-    ),
-    AutoRoute(
-      path: "/inventory",
-      page: InventoryRoute.page,
-    ),
-    AutoRoute(
-      path: "/reports",
-      page: ReportsRoute.page,
-    ),
-    AutoRoute(
-      path: "/suppliers",
-      page: SuppliersRoute.page,
-    ),
-    AutoRoute(
-      path: "/orders",
-      page: OrderRoute.page,
-    ),
-    AutoRoute(
-      path: "/manage-store",
-      page: ManageStoreRoute.page,
+      path: "/in-app",
+      page: InAppRoute.page,
     ),
   ];
 }

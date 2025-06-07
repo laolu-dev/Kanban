@@ -51,9 +51,9 @@ class LoginForm extends HookConsumerWidget {
             hintText: "Create a password",
             isPasswordField: true,
           ),
-         
+
           // Row(
-            
+
           //   children: [
           //     // Checkbox(value: false, onChanged: (value) {}),
           //     Text(
@@ -68,7 +68,7 @@ class LoginForm extends HookConsumerWidget {
           useSpaceOf24.verticalSpacing,
           FilledButton(
             onPressed: () {
-              context.router.push(DashboardRoute());
+              context.router.push(InAppRoute());
             },
             child: Text("Sign in"),
           ),

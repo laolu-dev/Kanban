@@ -6,7 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:kanban/config/gen/assets.gen.dart';
 import 'package:kanban/config/gen/colors.gen.dart';
-import 'package:kanban/config/router/router.gr.dart';
 import 'package:kanban/core/constants/constants.dart';
 import 'package:kanban/core/utils/extensions.dart';
 import 'package:kanban/src/features/authentication/presentation/widgets/form_text_field.dart';

@@ -51,19 +51,20 @@ final ThemeData theme = ThemeData(
       ),
     ),
   ),
+ 
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: AppColors.white,
     constraints: BoxConstraints(
       maxWidth: kTextFieldSize.width,
-      maxHeight: kTextFieldSize.height,
+      minHeight: kTextFieldSize.height,
     ),
     hintStyle: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w400,
       color: AppColors.grey500,
     ),
-    contentPadding: EdgeInsets.symmetric(horizontal: 14.0.w),
+    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
     enabledBorder: OutlineInputBorder(
       borderSide: const BorderSide(color: AppColors.grey300),
       borderRadius: BorderRadius.circular(8),
