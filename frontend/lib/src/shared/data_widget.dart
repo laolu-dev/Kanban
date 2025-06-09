@@ -6,33 +6,38 @@ import 'package:kanban/core/utils/extensions.dart';
 class DataWidget extends StatelessWidget {
   const DataWidget({
     super.key,
-    required this.title,
-    this.content,
+    this.padding,
+    this.children,
     this.titleTrailingWidget,
+    required this.title,
   });
 
   final String title;
+  final EdgeInsetsGeometry? padding;
   final Widget? titleTrailingWidget;
-  final Widget? content;
+  final List<Widget>? children;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: BoxConstraints(minHeight: context.screenHeight * .2),
 
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
-        spacing: useSpaceOf22,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: useSpaceOf16,
-              vertical: useSpaceOf20,
+            padding: EdgeInsetsGeometry.only(
+              left: useSpaceOf16,
+              right: useSpaceOf16,
+              top: useSpaceOf20,
             ),
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
@@ -47,7 +52,20 @@ class DataWidget extends StatelessWidget {
             ),
           ),
 
-          if (content != null) content!,
+          if (children != null)
+            Padding(
+              padding:
+                  padding ??
+                  EdgeInsets.only(
+                    left: useSpaceOf16,
+                    right: useSpaceOf16,
+                    bottom: useSpaceOf24,
+                  ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: children!,
+              ),
+            ),
         ],
       ),
     );

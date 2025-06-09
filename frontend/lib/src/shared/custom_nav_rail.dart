@@ -25,6 +25,7 @@ class CustomNavigationRail extends HookWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
+        color: AppColors.white,
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(8),
           bottomRight: Radius.circular(8),

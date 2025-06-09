@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:kanban/config/gen/colors.gen.dart';
+import 'package:kanban/core/constants/constants.dart';
 import 'package:kanban/core/utils/extensions.dart';
 import 'package:kanban/src/features/inventory/presentation/views/inventory.dart';
 import 'package:kanban/src/features/order/presentation/views/order.dart';
@@ -30,6 +31,7 @@ class InAppScreen extends HookWidget {
     final currentTab = useState<String>("Dashboard");
 
     return Scaffold(
+      backgroundColor: AppColors.grey50,
       body: SafeArea(
         child: Row(
           children: [
@@ -39,19 +41,20 @@ class InAppScreen extends HookWidget {
             VerticalDivider(
               width: 2,
               color: AppColors.grey50,
-              radius: BorderRadius.circular(8),
+              radius: BorderRadius.circular(8.0.r),
             ),
-            Flexible(
+
+            Expanded(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   CustomAppBar(),
-                  Expanded(
-                    child: Container(
+                  Flexible(
+                    child: Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: 32.0.w,
-                        vertical: 22.0.h,
+                        vertical: useSpaceOf22,
+                        horizontal: useSpaceOf32,
                       ),
-                      color: AppColors.grey50,
                       child: _destinations[currentTab.value],
                     ),
                   ),

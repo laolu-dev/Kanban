@@ -15,7 +15,7 @@ final ThemeData theme = ThemeData(
       padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 10.0.h)),
       textStyle: WidgetStatePropertyAll(
         TextStyle(
-          fontSize: 16,
+          fontSize: 16.0.sp,
           color: AppColors.white,
           fontWeight: FontWeight.w500,
         ),
@@ -26,7 +26,7 @@ final ThemeData theme = ThemeData(
             : AppColors.primary600;
       }),
       shape: WidgetStatePropertyAll(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0.r)),
       ),
     ),
   ),
@@ -37,7 +37,7 @@ final ThemeData theme = ThemeData(
       foregroundColor: WidgetStatePropertyAll(AppColors.grey700),
       textStyle: WidgetStatePropertyAll(
         TextStyle(
-          fontSize: 16,
+          fontSize: 16.0.sp,
           fontWeight: FontWeight.w500,
         ),
       ),
@@ -46,7 +46,7 @@ final ThemeData theme = ThemeData(
       ),
       shape: WidgetStatePropertyAll(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.0.r),
         ),
       ),
     ),
@@ -60,7 +60,7 @@ final ThemeData theme = ThemeData(
       minHeight: kTextFieldSize.height,
     ),
     hintStyle: TextStyle(
-      fontSize: 14,
+      fontSize: 14.0.sp,
       fontWeight: FontWeight.w400,
       color: AppColors.grey500,
     ),
@@ -76,32 +76,32 @@ final ThemeData theme = ThemeData(
   ),
   textTheme: TextTheme(
     displayLarge: TextStyle(
-      fontSize: 30,
+      fontSize: 30.0.sp,
       color: AppColors.grey900,
       fontWeight: FontWeight.w400,
     ),
     displaySmall: TextStyle(
-      fontSize: 24,
+      fontSize: 24.0.sp,
       color: AppColors.grey900,
       fontWeight: FontWeight.w400,
     ),
     titleLarge: TextStyle(
-      fontSize: 20,
+      fontSize: 20.0.sp,
       color: AppColors.grey900,
       fontWeight: FontWeight.w400,
     ),
     bodyLarge: TextStyle(
-      fontSize: 18,
+      fontSize: 18.0.sp,
       color: AppColors.grey900,
       fontWeight: FontWeight.w400,
     ),
     bodyMedium: TextStyle(
-      fontSize: 16,
+      fontSize: 16.0.sp,
       color: AppColors.grey900,
       fontWeight: FontWeight.w400,
     ),
     bodySmall: TextStyle(
-      fontSize: 14,
+      fontSize: 14.0.sp,
       color: AppColors.grey900,
       fontWeight: FontWeight.w400,
     ),
