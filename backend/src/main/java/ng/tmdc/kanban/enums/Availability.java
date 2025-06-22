@@ -5,3 +5,18 @@ public enum Availability {
     LOWSTOCK,
     OUTOFSTOCK
 }
+
+//public enum ApiResponseStatus {
+//    SUCCESS("success"), ERROR("error");
+//
+//    ApiResponseStatus(String status) {
+//        this.status = status;
+//    }
+//
+//    private final String status;
+//
+//
+//    public String getValue() {
+//        return status;
+//    }
+//}
