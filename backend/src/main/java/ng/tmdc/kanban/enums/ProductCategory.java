@@ -1,6 +1,6 @@
 package ng.tmdc.kanban.enums;
 
-public enum ProductCategories {
+public enum ProductCategory {
     FOOD,
     DRINKS,
     SOAPS,

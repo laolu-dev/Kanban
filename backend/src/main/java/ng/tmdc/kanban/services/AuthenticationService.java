@@ -1,14 +1,12 @@
 package ng.tmdc.kanban.services;
 
-import ng.tmdc.kanban.entities.UserEntity;
-import ng.tmdc.kanban.exception.BusinessException;
+import ng.tmdc.kanban.dtos.ApiResponse;
+import ng.tmdc.kanban.enums.ApiResponseStatus;
+import ng.tmdc.kanban.models.UserModel;
 import ng.tmdc.kanban.records.CreateUserRequest;
 import ng.tmdc.kanban.records.LoginRequest;
 import ng.tmdc.kanban.repositories.AuthenticationRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import java.util.Objects;
 
 @Service
 public class AuthenticationService {
@@ -18,19 +16,52 @@ public class AuthenticationService {
         this.repository = repository;
     }
 
-    public void createAccount(CreateUserRequest request) {
+    public ApiResponse<UserModel> createAccount(CreateUserRequest request) {
+        ApiResponse<UserModel> response = new ApiResponse<>();
 
-        UserEntity user = new UserEntity(request.name(), request.email(), request.password());
-        if (Objects.equals(repository.findByEmail(request.email()).getEmail(), request.email())) {
-            throw new BusinessException("Email already registered", HttpStatus.CONFLICT);
-        } else {
-            repository.save(user);
+        if (repository.findByEmail(request.email()) != null) {
+            response.setError("Email already registered");
+            response.setStatus(ApiResponseStatus.ERROR);
+            return response;
         }
 
+        UserModel user = UserModel.builder()
+                .name(request.name())
+                .email(request.email())
+                .password(request.password())
+                .build();
+
+        UserModel savedUser = repository.save(user);
+        response.setData(savedUser);
+        response.setMessage("Account created successfully");
+        response.setStatus(ApiResponseStatus.SUCCESS);
+
+        return response;
     }
 
-    public UserEntity login(LoginRequest request) {
-        return repository.findByEmail(request.email());
+    public ApiResponse<UserModel> login(LoginRequest request) {
+        ApiResponse<UserModel> response = new ApiResponse<>();
+        UserModel user = repository.findByEmail(request.email());
+
+        if (user == null) {
+            response.setError("There is no user with that email");
+            response.setStatus(ApiResponseStatus.ERROR);
+            return response;
+        }
+
+        if (!user.getPassword().equals(request.password())) {
+            response.setError("Incorrect password");
+            response.setStatus(ApiResponseStatus.ERROR);
+            return response;
+        }
+
+        // Optionally, you can clear the password before returning the user
+        user.setPassword(null);
+        response.setStatus(ApiResponseStatus.SUCCESS);
+        response.setMessage("Successfully logged in");
+        response.setData(user);
+
+        return response;
     }
 
 }

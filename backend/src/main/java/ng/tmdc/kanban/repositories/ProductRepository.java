@@ -1,12 +1,11 @@
 package ng.tmdc.kanban.repositories;
 
-import ng.tmdc.kanban.models.UserModel;
+import ng.tmdc.kanban.models.ProductModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 @Repository
-public interface AuthenticationRepository extends JpaRepository<UserModel, UUID> {
-    UserModel findByEmail(String email);
+public interface ProductRepository extends JpaRepository<ProductModel, UUID> {
 }
