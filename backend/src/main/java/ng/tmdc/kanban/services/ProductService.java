@@ -39,29 +39,33 @@ public class ProductService {
     }
 
     public ProductModel updateProduct(UUID id, UpdateProductRequest request) throws Exception {
-        final ProductModel productModel = repository.findById(id)
+        final ProductModel product = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
         switch (request) {
             case UpdateProductRequest update when update.name() != null ->
-                    productModel.setName(update.name());
+                    product.setName(update.name());
             case UpdateProductRequest update when update.category() != null ->
-                    productModel.setCategory(update.category());
+                    product.setCategory(update.category());
             case UpdateProductRequest update when update.price() != null ->
-                    productModel.setPrice(BigDecimal.valueOf(update.price()));
+                    product.setPrice(update.price());
             case UpdateProductRequest update when update.quantity() != null ->
-                    productModel.setQuantity(update.quantity());
+                    product.setQuantity(update.quantity());
             case UpdateProductRequest update when update.expiryDate() != null ->
-                    productModel.setExpiryDate(Date.valueOf(update.expiryDate()));
+                    product.setExpiryDate(Date.valueOf(update.expiryDate()));
             case UpdateProductRequest update when update.threshold() != null ->
-                    productModel.setThreshold(update.threshold());
+                    product.setThreshold(update.threshold());
             case UpdateProductRequest update when update.imageUrl() != null ->
-                    productModel.setImageUrl(update.imageUrl());
+                    product.setImageUrl(update.imageUrl());
             case UpdateProductRequest update when update.availability() != null ->
-                    productModel.setAvailability(update.availability());
+                    product.setAvailability(update.availability());
             default -> throw new IllegalArgumentException("Invalid request");
         }
 
-        return productModel;
+        return product;
+    }
+
+    public void deleteProduct(UUID id) {
+        repository.deleteById(id);
     }
 }

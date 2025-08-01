@@ -4,10 +4,12 @@ import ng.tmdc.kanban.enums.Availability;
 import ng.tmdc.kanban.enums.ProductCategory;
 import org.springframework.lang.Nullable;
 
+import java.math.BigDecimal;
+
 public record UpdateProductRequest(
         @Nullable String name,
         @Nullable ProductCategory category,
-        @Nullable Double price,
+        @Nullable BigDecimal price,
         @Nullable Integer quantity,
         @Nullable String expiryDate,
         @Nullable Integer threshold,

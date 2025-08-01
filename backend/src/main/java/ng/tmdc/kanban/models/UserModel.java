@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -40,4 +41,8 @@ public class UserModel implements Serializable {
     @Size(min = 8, message = "Password must be at least 8 characters")
     @Column(nullable = false)
     private String password;
+
+    @Column(name = "transaction_history")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<OrderModel> transactionHistory;
 }

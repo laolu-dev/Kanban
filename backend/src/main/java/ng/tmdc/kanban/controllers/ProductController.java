@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -64,7 +63,7 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     ResponseEntity<ApiResponse<ProductModel>> updateProduct(@PathVariable UUID id, @RequestBody UpdateProductRequest request) {
         try {
             ApiResponse<ProductModel> response = new ApiResponse<>();
@@ -91,18 +90,17 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/add")
-    ResponseEntity<ApiResponse<ProductModel>> deleteProduct(@RequestBody ProductRequest request) {
+    @DeleteMapping("/delete/{id}")
+    ResponseEntity<ApiResponse<ProductModel>> deleteProduct(@PathVariable UUID id) {
         try {
             ApiResponse<ProductModel> response = new ApiResponse<>();
-            final ProductModel product = service.addProduct(request);
+            service.deleteProduct(id);
 
             response.setStatus(ApiResponseStatus.SUCCESS);
-            response.setMessage("Product added successfully");
-            response.setData(product);
+            response.setMessage("Successfully deleted product");
 
             return ResponseEntity
-                    .status(HttpStatus.CREATED)
+                    .status(HttpStatus.OK)
                     .body(response);
 
         } catch (Exception e) {
@@ -110,7 +108,7 @@ public class ProductController {
 
             ApiResponse<ProductModel> response = new ApiResponse<>();
             response.setStatus(ApiResponseStatus.ERROR);
-            response.setError("Failed to add product");
+            response.setError("Failed to delete product");
 
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
