@@ -1,0 +1,11 @@
+package ng.tmdc.kanban.repositories;
+
+import ng.tmdc.kanban.models.OrderModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.UUID;
+
+@Repository
+public interface OrderRepository extends JpaRepository<OrderModel, UUID> {
+}

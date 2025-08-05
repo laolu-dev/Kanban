@@ -1,5 +1,6 @@
 package ng.tmdc.kanban.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -62,7 +63,8 @@ public class ProductModel implements Serializable {
     @Min(0)
     private int threshold;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
-    private ProductModel product;
+    @JoinColumn(name = "supplier_id", nullable = false)
+    private SupplierModel supplier;
 }

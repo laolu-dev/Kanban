@@ -1,12 +1,15 @@
 package ng.tmdc.kanban.services;
 
+import ng.tmdc.kanban.exception.BusinessException;
 import ng.tmdc.kanban.models.ProductModel;
+import ng.tmdc.kanban.models.SupplierModel;
 import ng.tmdc.kanban.records.ProductRequest;
 import ng.tmdc.kanban.records.UpdateProductRequest;
 import ng.tmdc.kanban.repositories.ProductRepository;
+import ng.tmdc.kanban.repositories.SuppliersRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
@@ -14,12 +17,17 @@ import java.util.UUID;
 @Service
 public class ProductService {
     final ProductRepository repository;
+    final SuppliersRepository supplierRepository;
 
-    public ProductService(ProductRepository repository) {
+    public ProductService(ProductRepository repository, SuppliersRepository supplierRepository) {
         this.repository = repository;
+        this.supplierRepository = supplierRepository;
     }
 
-    public ProductModel addProduct(ProductRequest request) throws Exception {
+    public ProductModel addProduct(ProductRequest request) throws BusinessException {
+        SupplierModel supplier = supplierRepository.findById(request.supplierId())
+                .orElseThrow(() -> new BusinessException("This supplier does not exist", HttpStatus.BAD_REQUEST));
+
         final ProductModel product = ProductModel.builder()
                 .name(request.name())
                 .category(request.category())
@@ -29,6 +37,7 @@ public class ProductService {
                 .threshold(request.threshold())
                 .availability(request.availability())
                 .imageUrl(request.imageUrl())
+                .supplier(supplier)
                 .build();
 
         return repository.save(product);
@@ -42,27 +51,16 @@ public class ProductService {
         final ProductModel product = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
-        switch (request) {
-            case UpdateProductRequest update when update.name() != null ->
-                    product.setName(update.name());
-            case UpdateProductRequest update when update.category() != null ->
-                    product.setCategory(update.category());
-            case UpdateProductRequest update when update.price() != null ->
-                    product.setPrice(update.price());
-            case UpdateProductRequest update when update.quantity() != null ->
-                    product.setQuantity(update.quantity());
-            case UpdateProductRequest update when update.expiryDate() != null ->
-                    product.setExpiryDate(Date.valueOf(update.expiryDate()));
-            case UpdateProductRequest update when update.threshold() != null ->
-                    product.setThreshold(update.threshold());
-            case UpdateProductRequest update when update.imageUrl() != null ->
-                    product.setImageUrl(update.imageUrl());
-            case UpdateProductRequest update when update.availability() != null ->
-                    product.setAvailability(update.availability());
-            default -> throw new IllegalArgumentException("Invalid request");
-        }
+        if (request.name() != null) product.setName(request.name());
+        if (request.category() != null) product.setCategory(request.category());
+        if (request.price() != null) product.setPrice(request.price());
+        if (request.quantity() != null) product.setQuantity(request.quantity());
+        if (request.expiryDate() != null) product.setExpiryDate(Date.valueOf(request.expiryDate()));
+        if (request.threshold() != null) product.setThreshold(request.threshold());
+        if (request.imageUrl() != null) product.setImageUrl(request.imageUrl());
+        if (request.availability() != null) product.setAvailability(request.availability());
 
-        return product;
+        return repository.save(product);
     }
 
     public void deleteProduct(UUID id) {

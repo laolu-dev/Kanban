@@ -1,5 +1,8 @@
 package ng.tmdc.kanban.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum DeliveryStatus {
     PENDING("Pending"),
     DELIVERED("Delivered"),
@@ -12,8 +15,4 @@ public enum DeliveryStatus {
     }
 
     private final String name;
-
-    public String getName() {
-        return name;
-    }
 }

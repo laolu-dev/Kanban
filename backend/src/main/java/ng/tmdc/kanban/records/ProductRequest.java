@@ -5,15 +5,19 @@ import ng.tmdc.kanban.enums.ProductCategory;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.UUID;
 
-public record ProductRequest(String name,
-                             ProductCategory category,
-                             BigDecimal price,
-                             int quantity,
-                             Date expiryDate,
-                             int threshold,
-                             String imageUrl,
-                             Availability availability) {
+public record ProductRequest(
+        String name,
+        ProductCategory category,
+        BigDecimal price,
+        int quantity,
+        Date expiryDate,
+        int threshold,
+        String imageUrl,
+        Availability availability,
+        UUID supplierId
+) {
 
     public ProductRequest {
         if (name == null || name.isBlank()) {
@@ -36,6 +40,9 @@ public record ProductRequest(String name,
         }
         if (availability == null) {
             throw new IllegalArgumentException("Availability cannot be null");
+        }
+        if (supplierId == null) {
+            throw new IllegalArgumentException("Supplier ID cannot be null");
         }
     }
 }

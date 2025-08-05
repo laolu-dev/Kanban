@@ -55,7 +55,7 @@ public class ProductController {
 
             ApiResponse<ProductModel> response = new ApiResponse<>();
             response.setStatus(ApiResponseStatus.ERROR);
-            response.setError("Failed to add product");
+            response.setError(e.getMessage());
 
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)

@@ -14,5 +14,6 @@ public record UpdateProductRequest(
         @Nullable String expiryDate,
         @Nullable Integer threshold,
         @Nullable Availability availability,
-        @Nullable String imageUrl) {
+        @Nullable String imageUrl
+) {
 }
